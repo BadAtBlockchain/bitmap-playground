@@ -18,9 +18,9 @@ contract ContractTest is Test {
             0
         );
 
-        uint256 _level0 = maskContract.get(0, 0);
-        uint256 _level1 = maskContract.get(0, 1);
-        uint256 _level2 = maskContract.get(0, 2);
+        uint256 _level0 = maskContract.getLevelA(0);
+        uint256 _level1 = maskContract.getLevelB(0);
+        uint256 _level2 = maskContract.getLevelC(0);
 
         assertEq(
             _level0,
@@ -38,4 +38,51 @@ contract ContractTest is Test {
         );
     }
 
+    function testLevelAIncrease() public {
+        uint256 _level0 = maskContract.getLevelA(0);
+
+        assertEq(
+            _level0,
+            0
+        );
+
+        maskContract.increaseLevelA(0);
+        _level0 = maskContract.getLevelA(0);
+
+        assertEq(
+            _level0,
+            1
+        );
+    }
+
+    function testLevelABIncrease() public {
+        uint256 _level0 = maskContract.getLevelA(0);
+
+        assertEq(
+            _level0,
+            0
+        );
+
+        maskContract.increaseLevelA(0);
+        _level0 = maskContract.getLevelA(0);
+
+        assertEq(
+            _level0,
+            1
+        );
+
+        uint256 _level1 = maskContract.getLevelB(0);
+        assertEq(
+            _level1,
+            0
+        );
+
+        maskContract.increaseLevelB(0);
+        _level1 = maskContract.getLevelB(0);
+
+        assertEq(
+            _level0,
+            1
+        );
+    }
 }
